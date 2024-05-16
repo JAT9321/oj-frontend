@@ -1,12 +1,15 @@
 <template>
-  <div class="home">home</div>
+  <div class="home">
+    <md-editor :value="value" :handle-change="onChange" />
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { ref } from "vue";
+import MdEditor from "@/components/MdEditor.vue";
 
-export default defineComponent({
-  name: "HomeView",
-  components: {},
-});
+const value = ref();
+const onChange = (v: string) => {
+  value.value = v;
+};
 </script>
