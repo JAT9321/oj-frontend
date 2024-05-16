@@ -2,23 +2,24 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { BaseResponse_boolean_ } from '../models/BaseResponse_boolean_';
-import type { BaseResponse_LoginUserVO_ } from '../models/BaseResponse_LoginUserVO_';
-import type { BaseResponse_long_ } from '../models/BaseResponse_long_';
-import type { BaseResponse_Page_User_ } from '../models/BaseResponse_Page_User_';
-import type { BaseResponse_Page_UserVO_ } from '../models/BaseResponse_Page_UserVO_';
-import type { BaseResponse_User_ } from '../models/BaseResponse_User_';
-import type { BaseResponse_UserVO_ } from '../models/BaseResponse_UserVO_';
-import type { DeleteRequest } from '../models/DeleteRequest';
-import type { UserAddRequest } from '../models/UserAddRequest';
-import type { UserLoginRequest } from '../models/UserLoginRequest';
-import type { UserQueryRequest } from '../models/UserQueryRequest';
-import type { UserRegisterRequest } from '../models/UserRegisterRequest';
-import type { UserUpdateMyRequest } from '../models/UserUpdateMyRequest';
-import type { UserUpdateRequest } from '../models/UserUpdateRequest';
-import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type {BaseResponse_boolean_} from '../models/BaseResponse_boolean_';
+import type {BaseResponse_LoginUserVO_} from '../models/BaseResponse_LoginUserVO_';
+import type {BaseResponse_long_} from '../models/BaseResponse_long_';
+import type {BaseResponse_Page_User_} from '../models/BaseResponse_Page_User_';
+import type {BaseResponse_Page_UserVO_} from '../models/BaseResponse_Page_UserVO_';
+import type {BaseResponse_User_} from '../models/BaseResponse_User_';
+import type {BaseResponse_UserVO_} from '../models/BaseResponse_UserVO_';
+import type {DeleteRequest} from '../models/DeleteRequest';
+import type {UserAddRequest} from '../models/UserAddRequest';
+import type {UserLoginRequest} from '../models/UserLoginRequest';
+import type {UserQueryRequest} from '../models/UserQueryRequest';
+import type {UserRegisterRequest} from '../models/UserRegisterRequest';
+import type {UserUpdateMyRequest} from '../models/UserUpdateMyRequest';
+import type {UserUpdateRequest} from '../models/UserUpdateRequest';
+import type {CancelablePromise} from '../core/CancelablePromise';
+import {OpenAPI} from '../core/OpenAPI';
+import {request as __request} from '../core/request';
+
 export class UserControllerService {
     /**
      * addUser
@@ -41,6 +42,7 @@ export class UserControllerService {
             },
         });
     }
+
     /**
      * deleteUser
      * @param deleteRequest deleteRequest
@@ -62,6 +64,7 @@ export class UserControllerService {
             },
         });
     }
+
     /**
      * getUserById
      * @param id id
@@ -84,6 +87,7 @@ export class UserControllerService {
             },
         });
     }
+
     /**
      * getLoginUser
      * @returns BaseResponse_LoginUserVO_ OK
@@ -100,6 +104,7 @@ export class UserControllerService {
             },
         });
     }
+
     /**
      * getUserVOById
      * @param id id
@@ -122,6 +127,7 @@ export class UserControllerService {
             },
         });
     }
+
     /**
      * listUserByPage
      * @param userQueryRequest userQueryRequest
@@ -143,6 +149,7 @@ export class UserControllerService {
             },
         });
     }
+
     /**
      * listUserVOByPage
      * @param userQueryRequest userQueryRequest
@@ -164,6 +171,7 @@ export class UserControllerService {
             },
         });
     }
+
     /**
      * userLogin
      * @param userLoginRequest userLoginRequest
@@ -185,6 +193,7 @@ export class UserControllerService {
             },
         });
     }
+
     /**
      * userLoginByWxOpen
      * @param code code
@@ -207,6 +216,7 @@ export class UserControllerService {
             },
         });
     }
+
     /**
      * userLogout
      * @returns BaseResponse_boolean_ OK
@@ -224,6 +234,7 @@ export class UserControllerService {
             },
         });
     }
+
     /**
      * userRegister
      * @param userRegisterRequest userRegisterRequest
@@ -245,6 +256,7 @@ export class UserControllerService {
             },
         });
     }
+
     /**
      * updateUser
      * @param userUpdateRequest userUpdateRequest
@@ -266,6 +278,7 @@ export class UserControllerService {
             },
         });
     }
+
     /**
      * updateMyUser
      * @param userUpdateMyRequest userUpdateMyRequest
