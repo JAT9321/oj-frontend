@@ -1,5 +1,5 @@
 <template>
-  <div class="admin">管理</div>
+  <div id="admin">管理</div>
 </template>
 
 <script></script>

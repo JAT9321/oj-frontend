@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <style scoped>
-.bytemd-toolbar-icon.bytemd-tippy.bytemd-tippy-right:last-child {
-  display: none;
-}
+/*.bytemd-toolbar-icon.bytemd-tippy.bytemd-tippy-right:last-child {*/
+/*  display: none;*/
+/*}*/
 </style>
