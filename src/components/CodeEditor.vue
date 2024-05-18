@@ -10,26 +10,32 @@ import { defineProps, withDefaults } from "vue/dist/vue";
 // 父类传值和处理操作
 interface Props {
   value: string;
+  language: string;
   handleChange: (v: string) => void;
+  languageChange: (language: string) => void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   value: () => "",
+  language: () => "java",
   handleChange: (v: string) => {
     console.log(v);
+  },
+  languageChange: (language: string) => {
+    console.log(language);
   },
 });
 
 const codeEditorRef = ref();
 const codeEditor = ref();
 
-const fillValue = () => {
-  if (!codeEditor.value) {
-    return;
-  }
-  // 改变值
-  toRaw(codeEditor.value).setValue("新的值");
-};
+// const fillValue = () => {
+//   if (!codeEditor.value) {
+//     return;
+//   }
+//   // 改变值
+//   toRaw(codeEditor.value).setValue("新的值");
+// };
 
 onMounted(() => {
   if (!codeEditorRef.value) {
@@ -38,7 +44,7 @@ onMounted(() => {
   // Hover on each property to see its docs!
   codeEditor.value = monaco.editor.create(codeEditorRef.value, {
     value: props.value,
-    language: "java",
+    language: props.language,
     automaticLayout: true,
     colorDecorators: true,
     minimap: {
