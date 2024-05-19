@@ -70,7 +70,7 @@ const total = ref(0);
 const searchParams = ref<QuestionQueryRequest>({
   title: "",
   tags: [],
-  pageSize: 8,
+  pageSize: 2,
   current: 1,
 });
 

@@ -15,7 +15,7 @@ export default {
     async getLoginUser({ commit, state }, payload) {
       //从后端获取用户登录状态信息
       const res = await UserControllerService.getLoginUserUsingGet();
-      console.log(res);
+      console.log("用户信息", res);
       if (res.code === 0) {
         //登录成功
         commit("updateUser", res.data);
