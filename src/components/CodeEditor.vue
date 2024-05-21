@@ -4,15 +4,14 @@
 
 <script setup lang="ts">
 import * as monaco from "monaco-editor";
-import { onMounted, ref, toRaw } from "vue";
+import { onMounted, ref, toRaw, watch } from "vue";
 import { defineProps, withDefaults } from "vue/dist/vue";
 
 // 父类传值和处理操作
 interface Props {
   value: string;
-  language: string;
+  language?: string;
   handleChange: (v: string) => void;
-  languageChange: (language: string) => void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -21,21 +20,22 @@ const props = withDefaults(defineProps<Props>(), {
   handleChange: (v: string) => {
     console.log(v);
   },
-  languageChange: (language: string) => {
-    console.log(language);
-  },
 });
 
 const codeEditorRef = ref();
 const codeEditor = ref();
 
-// const fillValue = () => {
-//   if (!codeEditor.value) {
-//     return;
-//   }
-//   // 改变值
-//   toRaw(codeEditor.value).setValue("新的值");
-// };
+watch(
+  () => props.language,
+  () => {
+    if (codeEditor.value) {
+      monaco.editor.setModelLanguage(
+        toRaw(codeEditor.value).getModel(),
+        props.language
+      );
+    }
+  }
+);
 
 onMounted(() => {
   if (!codeEditorRef.value) {
