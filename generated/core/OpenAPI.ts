@@ -21,6 +21,8 @@ export type OpenAPIConfig = {
 
 export const OpenAPI: OpenAPIConfig = {
   BASE: "http://localhost:8121",
+  // BASE: "http://106.14.219.106:8121",
+  // BASE: "http://zgtsky.top:81",
   VERSION: "1.0",
   WITH_CREDENTIALS: true,
   CREDENTIALS: "include",

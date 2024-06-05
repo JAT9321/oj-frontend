@@ -14,7 +14,8 @@ export default {
   actions: {
     async getLoginUser({ commit, state }, payload) {
       //从后端获取用户登录状态信息
-      const res = await UserControllerService.getLoginUserUsingGet();
+      const tokenUser = window.localStorage.getItem("tokenUser");
+      const res = await UserControllerService.getLoginUserUsingGet(tokenUser);
       console.log("用户信息", res);
       if (res.code === 0) {
         //登录成功

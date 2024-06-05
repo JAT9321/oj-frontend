@@ -2,6 +2,7 @@ import axios from "axios";
 
 axios.interceptors.request.use(
   function (config) {
+    config.headers.authorization = window.localStorage.getItem("tokenUser");
     return config;
   },
   function (error) {
