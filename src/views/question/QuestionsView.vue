@@ -8,7 +8,7 @@
         <a-input-tag v-model="searchParams.tags" placeholder="请输入标签" />
       </a-form-item>
       <a-form-item>
-        <a-button type="primary" @click="doSubmit">提交</a-button>
+        <a-button type="primary" @click="doSubmit">查询</a-button>
       </a-form-item>
     </a-form>
     <a-divider size="0" />
@@ -23,6 +23,8 @@
         total,
       }"
       @page-change="onPageChange"
+      :bordered="false"
+      :stripe="true"
     >
       <template #tags="{ record }">
         <a-space wrap>
@@ -34,8 +36,11 @@
       <template #acceptedRate="{ record }">
         {{
           `${
-            record.submitNum ? record.acceptedNum / record.submitNum : "0"
-          } % (${record.acceptedNum}/${record.submitNum})`
+            record.submitNum
+              ? parseFloat(record.acceptedNum / record.submitNum).toFixed(2) *
+                100
+              : "0"
+          } %`
         }}
       </template>
       <template #createTime="{ record }">
@@ -106,25 +111,31 @@ const columns = [
   {
     title: "题号",
     dataIndex: "id",
+    align: "center",
   },
   {
     title: "题目名称",
     dataIndex: "title",
+    align: "center",
   },
   {
     title: "标签",
     slotName: "tags",
+    align: "center",
   },
   {
     title: "通过率",
     slotName: "acceptedRate",
+    align: "center",
   },
   {
     title: "创建时间",
     slotName: "createTime",
+    align: "center",
   },
   {
     slotName: "optional",
+    align: "center",
   },
 ];
 

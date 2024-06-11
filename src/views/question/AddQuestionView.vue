@@ -1,12 +1,21 @@
 <template>
   <div id="addQuestionView">
-    <h2>创建题目</h2>
+    <h2 :style="{ paddingLeft: `15%` }">创建题目</h2>
     <a-form :model="form" label-align="right">
       <a-form-item field="title" label="标题">
-        <a-input v-model="form.title" placeholder="请输入标题" />
+        <a-input
+          v-model="form.title"
+          placeholder="请输入标题"
+          :style="{ width: `320px` }"
+        />
       </a-form-item>
       <a-form-item field="tags" label="标签">
-        <a-input-tag v-model="form.tags" placeholder="请选择标签" allow-clear />
+        <a-input-tag
+          v-model="form.tags"
+          placeholder="请选择标签"
+          allow-clear
+          :style="{ width: `320px` }"
+        />
       </a-form-item>
       <a-form-item field="content" label="题目内容">
         <MdEditor :value="form.content" :handle-change="onContentChange" />
@@ -16,25 +25,39 @@
       </a-form-item>
       <a-form-item label="判题配置" :content-flex="false" :merge-props="false">
         <a-space direction="vertical" style="min-width: 480px">
-          <a-form-item field="judgeConfig.timeLimit" label="时间限制">
+          <a-form-item
+            field="judgeConfig.timeLimit"
+            label="时间限制(ms)"
+            :style="{ width: `500px` }"
+          >
             <a-input-number
               v-model="form.judgeConfig.timeLimit"
               placeholder="请输入时间限制"
               mode="button"
               min="0"
               size="large"
+              :style="{ width: `150px` }"
             />
           </a-form-item>
-          <a-form-item field="judgeConfig.memoryLimit" label="内存限制">
+          <a-form-item
+            field="judgeConfig.memoryLimit"
+            label="内存限制(MB)"
+            :style="{ width: `500px` }"
+          >
             <a-input-number
               v-model="form.judgeConfig.memoryLimit"
               placeholder="请输入内存限制"
               mode="button"
               min="0"
               size="large"
+              :style="{ width: `150px` }"
             />
           </a-form-item>
-          <a-form-item field="judgeConfig.stackLimit" label="堆栈限制">
+          <a-form-item
+            field="judgeConfig.stackLimit"
+            label="堆栈限制"
+            v-show="false"
+          >
             <a-input-number
               v-model="form.judgeConfig.stackLimit"
               placeholder="请输入堆栈限制"
@@ -55,33 +78,42 @@
           :key="index"
           no-style
         >
-          <a-space direction="vertical" style="min-width: 640px">
+          <a-space direction="vertical" style="min-width: 480px">
             <a-form-item
               :field="`form.judgeCase[${index}].input`"
               :label="`输入用例-${index}`"
               :key="index"
+              :style="{ width: `500px` }"
             >
               <a-input
                 v-model="judgeCaseItem.input"
                 placeholder="请输入测试输入用例"
               />
             </a-form-item>
-            <a-form-item
-              :field="`form.judgeCase[${index}].output`"
-              :label="`输出用例-${index}`"
-              :key="index"
-            >
-              <a-input
-                v-model="judgeCaseItem.output"
-                placeholder="请输入测试输出用例"
-              />
-            </a-form-item>
-            <a-button status="danger" @click="handleDelete(index)">
-              删除
-            </a-button>
+            <a-row :gutter="24">
+              <a-col :span="16">
+                <a-form-item
+                  :field="`form.judgeCase[${index}].output`"
+                  :label="`输出用例-${index}`"
+                  :key="index"
+                  :style="{ width: `500px` }"
+                >
+                  <a-input
+                    v-model="judgeCaseItem.output"
+                    placeholder="请输入测试输出用例"
+                  />
+                </a-form-item>
+              </a-col>
+              <a-col :span="4" :offset="4">
+                <a-button status="danger" @click="handleDelete(index)">
+                  删除
+                </a-button>
+              </a-col>
+            </a-row>
           </a-space>
         </a-form-item>
-        <div style="margin-top: 32px">
+
+        <div style="margin-top: 5px">
           <a-button @click="handleAdd" type="outline" status="success"
             >新增测试用例
           </a-button>
@@ -114,7 +146,7 @@ let form = ref({
   answer: "",
   content: "",
   judgeConfig: {
-    memoryLimit: 1000,
+    memoryLimit: 50,
     stackLimit: 1000,
     timeLimit: 1000,
   },
@@ -152,7 +184,7 @@ const loadData = async () => {
     }
     if (!form.value.judgeConfig) {
       form.value.judgeConfig = {
-        memoryLimit: 1000,
+        memoryLimit: 50,
         stackLimit: 1000,
         timeLimit: 1000,
       };
@@ -225,5 +257,7 @@ const onAnswerChange = (value: string) => {
 
 <style scoped>
 #addQuestionView {
+  /*display: flex;*/
+  /*justify-content: center;*/
 }
 </style>

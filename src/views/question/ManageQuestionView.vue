@@ -11,7 +11,12 @@
         total,
       }"
       @page-change="onPageChange"
+      column-resizable
+      :bordered="{ cell: true }"
     >
+      <template #createTime="{ record }">
+        {{ moment(record.createTime).format("YYYY-MM-DD") }}
+      </template>
       <template #optional="{ record }">
         <a-space>
           <a-button type="primary" @click="doUpdate(record)"> 修改</a-button>
@@ -27,6 +32,7 @@ import { onMounted, ref, watchEffect } from "vue";
 import { Question, QuestionControllerService } from "../../../generated";
 import message from "@arco-design/web-vue/es/message";
 import { useRouter } from "vue-router";
+import moment from "moment";
 
 const tableRef = ref();
 
@@ -69,50 +75,90 @@ const columns = [
   {
     title: "id",
     dataIndex: "id",
+    width: 50,
+    minWidth: 50,
+    align: "center",
   },
   {
     title: "标题",
     dataIndex: "title",
+    width: 100,
+    minWidth: 100,
+    align: "center",
   },
   {
     title: "内容",
     dataIndex: "content",
+    minWidth: 100,
+    align: "center",
   },
   {
     title: "标签",
     dataIndex: "tags",
+    width: 200,
+    minWidth: 100,
+    align: "center",
   },
   {
     title: "答案",
     dataIndex: "answer",
+    width: 100,
+    minWidth: 100,
+    align: "center",
   },
   {
     title: "提交数",
     dataIndex: "submitNum",
+    width: 100,
+    minWidth: 50,
+    align: "center",
   },
   {
     title: "通过数",
     dataIndex: "acceptedNum",
+    width: 100,
+    minWidth: 100,
+    align: "center",
   },
   {
     title: "判题配置",
     dataIndex: "judgeConfig",
+    width: 250,
+    minWidth: 100,
+    align: "center",
   },
   {
     title: "判题用例",
     dataIndex: "judgeCase",
+    minWidth: 100,
+    align: "center",
   },
   {
     title: "用户id",
     dataIndex: "userId",
+    width: 100,
+    minWidth: 50,
+    align: "center",
   },
+  // {
+  //   title: "创建时间",
+  //   dataIndex: "createTime",
+  //   width: 200,
+  //   minWidth: 100,
+  //   align: "center",
+  // },
   {
     title: "创建时间",
-    dataIndex: "createTime",
+    slotName: "createTime",
+    align: "center",
+    width: 200,
+    minWidth: 100,
   },
   {
     title: "操作",
     slotName: "optional",
+    minWidth: 100,
+    align: "center",
   },
 ];
 
