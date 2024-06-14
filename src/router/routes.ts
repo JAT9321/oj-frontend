@@ -69,7 +69,7 @@ export const routes: Array<RouteRecordRaw> = [
     component: ViewQuestionView,
     props: true,
     meta: {
-      access: ACCESS_ENUM.ADMIN,
+      access: ACCESS_ENUM.USER,
       hide: true,
     },
   },
@@ -77,6 +77,10 @@ export const routes: Array<RouteRecordRaw> = [
     path: "/question_submit",
     name: "浏览题目提交",
     component: QuestionSubmitView,
+    meta: {
+      access: ACCESS_ENUM.USER,
+      hide: false,
+    },
   },
   {
     path: "/hide",
@@ -100,11 +104,12 @@ export const routes: Array<RouteRecordRaw> = [
     component: AdminView,
     meta: {
       access: ACCESS_ENUM.ADMIN,
+      hide: true,
     },
   },
   {
     path: "/about",
-    name: "关于我的",
+    name: "关于作者",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },

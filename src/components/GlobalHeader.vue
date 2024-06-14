@@ -22,7 +22,24 @@
       </a-menu>
     </a-col>
     <a-col flex="100px">
-      <div>{{ store.state.user?.loginUser?.userName ?? "未登录" }}</div>
+      <div v-if="userName == null || userName === '未登录'">
+        <a-tag
+          checkable
+          color="arcoblue"
+          :default-checked="true"
+          @click="toLogin"
+          >点击登录
+        </a-tag>
+      </div>
+      <div v-else>
+        <a-dropdown-button>
+          <div>{{ userName }}</div>
+          <template #content>
+            <a-doption disabled>个人信息</a-doption>
+            <a-doption @click="toLogout">退出</a-doption>
+          </template>
+        </a-dropdown-button>
+      </div>
     </a-col>
   </a-row>
 </template>
@@ -30,12 +47,24 @@
 <script setup lang="ts">
 import { routes } from "@/router/routes";
 import { useRouter } from "vue-router";
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import checkAccess from "@/access/checkAccess";
+import ACCESS_ENUM from "@/access/accessEnum";
+import { UserControllerService } from "../../generated";
+import message from "@arco-design/web-vue/es/message";
 
 const router = useRouter();
 const store = useStore();
+
+const userName = ref();
+
+onMounted(async () => {
+  await store.dispatch("user/getLoginUser");
+  userName.value = store.state.user?.loginUser?.userName;
+  console.log("onMounted", userName.value);
+});
+
 //默认主页
 const selectedKeys = ref(["/"]);
 // const loginUser = store.state.user.loginUser;
@@ -46,15 +75,30 @@ const visibleRoutes = computed(() => {
     if (item.meta?.hide) {
       return false;
     }
-    //判断菜单需要的权限
-    if (
-      !checkAccess(store.state.user.loginUser, item?.meta?.access as string)
-    ) {
+    const needAccess = item?.meta?.access as string;
+    if (needAccess === ACCESS_ENUM.USER) return true;
+    if (!checkAccess(store.state.user.loginUser, needAccess)) {
+      //判断菜单需要的权限
       return false;
     }
     return true;
   });
 });
+// console.log("login - >", router.currentRoute.value.fullPath);
+const toLogin = () => {
+  router.push({
+    path: `/user/login?redirect=${router.currentRoute.value.fullPath}`,
+  });
+};
+
+const toLogout = async () => {
+  const data = await UserControllerService.userLogoutUsingPost();
+  await store.dispatch("user/logoutUser");
+  userName.value = null;
+  if (data.code == 0) {
+    message.success("退出成功");
+  }
+};
 
 //路由跳转后，更新选中的菜单项
 router.afterEach((to, from, failure) => {

@@ -8,7 +8,7 @@
         <router-view />
       </a-layout-content>
       <a-layout-footer class="footer">
-        <a href="https://zgtsky.top"> 个人博客 by sky </a>
+        <a href="https://zgtsky.top"> Powered by GaoTian </a>
       </a-layout-footer>
     </a-layout>
   </div>
@@ -28,7 +28,7 @@
 }
 
 #basicLayout .footer {
-  background: darkgray;
+  background: whitesmoke;
   padding: 16px;
   position: sticky;
   bottom: 0;

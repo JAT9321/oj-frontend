@@ -12,7 +12,7 @@ export default {
   }),
   // getters,
   actions: {
-    async getLoginUser({ commit, state }, payload) {
+    async getLoginUser({ commit, state }) {
       //从后端获取用户登录状态信息
       const tokenUser = window.localStorage.getItem("tokenUser");
       const res = await UserControllerService.getLoginUserUsingGet(tokenUser);
@@ -26,8 +26,13 @@ export default {
           userRole: ACCESS_ENUM.NOT_LOGIN,
         });
       }
-
-      console.log(payload);
+    },
+    async logoutUser({ commit }) {
+      window.localStorage.removeItem("tokenUser");
+      commit("updateUser", {
+        userName: "未登录",
+        userRole: ACCESS_ENUM.NOT_LOGIN,
+      });
     },
   },
   mutations: {
