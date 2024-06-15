@@ -37,8 +37,7 @@
         {{
           `${
             record.submitNum
-              ? parseFloat(record.acceptedNum / record.submitNum).toFixed(2) *
-                100
+              ? parseInt((record.acceptedNum * 100) / record.submitNum)
               : "0"
           } %`
         }}
