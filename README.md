@@ -1,10 +1,10 @@
 # 链接
 
-oj-backend (后端)[https://github.com/JAT9321/oj-backend]
+oj-backend [后端](https://github.com/JAT9321/oj-backend)
 
-oj-code-sandbox (代码沙箱)[https://github.com/JAT9321/oj-code-sandbox]
+oj-code-sandbox [代码沙箱](https://github.com/JAT9321/oj-code-sandbox)
 
-oj-frontend (前端)[https://github.com/JAT9321/oj-frontend]
+oj-frontend [前端](https://github.com/JAT9321/oj-frontend)
 
 # 简介
 
